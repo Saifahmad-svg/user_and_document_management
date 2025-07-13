@@ -8,7 +8,6 @@ import { IngestionService } from '../ingestion/ingestion.service';
 const mockDocumentRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 const mockIngestionService = {

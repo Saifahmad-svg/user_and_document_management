@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateDocumentDto {
   @IsNotEmpty()
@@ -14,4 +14,12 @@ export class UpdateDocumentDto {
 
   @IsOptional()
   description?: string;
+}
+
+export class PaginatedDocumentDto {
+  @IsString()
+  limit: number;
+
+  @IsString()
+  page: number;
 }

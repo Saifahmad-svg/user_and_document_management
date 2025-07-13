@@ -7,7 +7,6 @@ import { User } from './users.entity';
 const mockUserRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 describe('UserController', () => {

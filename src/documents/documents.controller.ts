@@ -6,13 +6,18 @@ import {
   Param,
   Delete,
   Patch,
+  Query,
   UseInterceptors,
   UploadedFile,
   UseGuards,
   Request,
 } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
-import { CreateDocumentDto, UpdateDocumentDto } from './dto/documents.dto';
+import {
+  CreateDocumentDto,
+  UpdateDocumentDto,
+  PaginatedDocumentDto,
+} from './dto/documents.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from '@nestjs/passport';
@@ -45,8 +50,8 @@ export class DocumentsController {
   }
 
   @Get()
-  findAll() {
-    return this.documentsService.findAll();
+  findAll(@Query() query: PaginatedDocumentDto) {
+    return this.documentsService.findAll(query.page, query.limit);
   }
 
   @Get(':id')

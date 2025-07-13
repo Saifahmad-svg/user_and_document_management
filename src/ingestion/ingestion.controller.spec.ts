@@ -9,13 +9,11 @@ import { KafkaService } from '../kafka/kafka.service';
 const mockIngestionRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 const mockDocumentRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 describe('IngestionController', () => {

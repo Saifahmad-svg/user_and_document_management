@@ -8,12 +8,10 @@ import { KafkaService } from '../kafka/kafka.service';
 const mockDocumentRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 const mockInjestionRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 describe('DocumentsService', () => {

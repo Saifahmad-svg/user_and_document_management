@@ -6,7 +6,6 @@ import { JwtService } from '@nestjs/jwt';
 const mockUserRepository = {
   find: jest.fn(),
   save: jest.fn(),
-  // Add more mocked methods as needed
 };
 
 describe('AuthService', () => {

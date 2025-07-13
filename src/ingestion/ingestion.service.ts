@@ -49,8 +49,19 @@ export class IngestionService {
     });
   }
 
-  async getIngestionHistory() {
-    return this.ingestionRepo.find({ order: { createdAt: 'DESC' } });
+  async getIngestionHistory(page: number = 1, limit: number = 10) {
+    // Ensure page and limit are positive integers to prevent invalid queries.
+    const pageNumber = Math.max(1, page);
+    const pageSize = Math.max(1, limit);
+
+    // Calculate the number of records to skip based on the page number.
+    const skip = (pageNumber - 1) * pageSize;
+
+    return this.ingestionRepo.find({
+      order: { createdAt: 'DESC' },
+      skip,
+      take: pageSize,
+    });
   }
 
   async updateIngestionStatus(
