@@ -1,0 +1,4 @@
+kafka-python
+Pillow
+moviepy==1.0.3
+imageio[ffmpeg]

@@ -23,8 +23,9 @@ export class DocumentsService {
       filePath: file.path,
       uploadedBy: { id: userId },
     });
+    // Saving document into document repo
     const savedDocs = await this.documentRepo.save(document);
-    // Triger Ingest
+    // Trigerring Ingest Service
     await this.ingestionService.triggerIngestion(savedDocs.id);
     return savedDocs;
   }
@@ -36,6 +37,8 @@ export class DocumentsService {
 
     // Calculate the number of records to skip based on the page number.
     const skip = (pageNumber - 1) * pageSize;
+
+    // Retriving documents with pagination
     return this.documentRepo.find({
       relations: ['uploadedBy'],
       skip,
@@ -44,22 +47,28 @@ export class DocumentsService {
   }
 
   async findOne(id: string) {
+    // Retriving particular document
     const doc = await this.documentRepo.findOne({
       where: { id },
       relations: ['uploadedBy'],
     });
+    // Throw an error if document not found
     if (!doc) throw new NotFoundException('Document not found');
     return doc;
   }
 
   async update(id: string, updateDto: UpdateDocumentDto) {
+    // Retriving particular document
     const doc = await this.findOne(id);
     Object.assign(doc, updateDto);
+    // Updating that document
     return this.documentRepo.save(doc);
   }
 
   async remove(id: string) {
+    // Fetching particular document
     const doc = await this.findOne(id);
+    // Removing that document
     return this.documentRepo.remove(doc);
   }
 }
